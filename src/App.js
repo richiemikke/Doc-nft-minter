@@ -3,12 +3,10 @@ import Cover from "./components/Cover";
 import {Notification} from "./components/ui/Notifications";
 import Wallet from "./components/wallet";
 import {useBalance, useMinterContract} from "./hooks";
-
-
 import Nfts from "./components/minter/nfts";
 import {useContractKit} from "@celo-tools/use-contractkit";
 
-import coverImg from "./assets/img/nft_geo_cover.png";
+
 import "./App.css";
 
 
@@ -58,7 +56,7 @@ const App = function AppWrapper() {
                 </Container>
             ) : (
                 //  if user wallet is not connected display cover page
-                <Cover name="DOC Minter" coverImg={coverImg} connect={connect}/>
+                <Cover name="DOC Minter" coverImg="https://media.istockphoto.com/vectors/contract-or-document-signing-icon-document-folder-with-stamp-and-text-vector-id1179640294?k=20&m=1179640294&s=612x612&w=0&h=O2IBtlV52-6gWSAeyozPIFkfZ-LzHnpXBw2tOuUToj8=" connect={connect}/>
             )}
         </>
     );

@@ -22,11 +22,24 @@ contract MyNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         _setTokenURI(tokenId, uri);
     }
 
+   // transferring the Documents to the specific owner
+   function transferNFT(
+        address from,
+        address to,
+        uint256 tokenId
+    ) public {
+        _transfer(from, to, tokenId);
+    }
+
+
      // check if the token already exists
   function getTokenExists(uint256 _tokenId) public view returns(bool) {
     bool tokenExists = _exists(_tokenId);
     return tokenExists;
   }
+
+
+
 
      // get total number of tokens minted so far
   function getNumberOfTokensMinted() public view returns(uint256) {
@@ -41,7 +54,6 @@ contract MyNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   }
 
     // The following functions are overrides required by Solidity.
-
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
         internal
         override(ERC721, ERC721Enumerable)

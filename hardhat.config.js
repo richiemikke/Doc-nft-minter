@@ -28,5 +28,5 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
       },
     },
   },
-  solidity: "0.8.4",
+ 
 };

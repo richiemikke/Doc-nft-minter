@@ -22,7 +22,7 @@ const AddNfts = ({ save, address }) => {
   // close the popup modal
   const handleClose = () => {
     setShow(false);
-    setAttributes([]);
+ 
   };
 
   // display the popup modal

@@ -10,6 +10,7 @@ import {
   getNfts,
   createNft,
   fetchNftContractOwner,
+  transferNFT,
 } from "../../../utils/minter";
 import { Row } from "react-bootstrap";
 
@@ -54,6 +55,31 @@ const NftList = ({minterContract, name}) => {
     }
   };
 
+
+
+  const transfer = async (owneraddress, newaddress, tokenId) => {
+    try {
+      setLoading(true);
+
+      await transferNFT(
+        minterContract,
+        performActions,
+        owneraddress,
+        newaddress,
+        tokenId
+      );
+
+      toast(<NotificationSuccess text="Updating NFT list...." />);
+      getAssets();
+    } catch (error) {
+      console.log({ error });
+      toast(<NotificationError text="Failed to change price of NFT." />);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
   const fetchContractOwner = useCallback(async (minterContract) => {
 
     // get the address that deployed the NFT contract
@@ -91,9 +117,12 @@ const NftList = ({minterContract, name}) => {
               {nfts.map((_nft) => (
                   <Nft
                       key={_nft.index}
+                      nftTransfer={transfer}
                       nft={{
                         ..._nft,
+
                       }}
+                      contractOwner={address}
                   />
               ))}
             </Row>

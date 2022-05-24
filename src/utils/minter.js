@@ -115,3 +115,32 @@ export const fetchNftContractOwner = async (minterContract) => {
         console.log({e});
     }
 };
+
+
+export const transferNFT = async (
+    minterContract,
+    performActions,
+    owneraddress,
+    newaddress,
+    tokenId,
+    
+  ) => {
+    try {
+      await performActions(async (kit) => {
+        try {
+          console.log(minterContract, tokenId);
+          const { defaultAccount } = kit;
+
+  
+          await minterContract.methods
+            .transferNFT(owneraddress, newaddress, tokenId)
+            .send({ from: defaultAccount});
+        } catch (error) {
+          console.log({ error });
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
