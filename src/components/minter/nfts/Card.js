@@ -6,8 +6,8 @@ import Identicon from "../../ui/Identicon";
 import { useEffect, useState, useCallback } from "react";
 import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
 
-const NftCard = ({ nft, nftTransfer }) => {
-  const { image, description, owner, contractOwner, name, index } = nft;
+const NftCard = ({ nft, nftTransfer, isOwner}) => {
+  const { image, description, owner, name, index } = nft;
   const [newaddress, setnewAddress] = useState('');
 
 
@@ -38,7 +38,7 @@ const NftCard = ({ nft, nftTransfer }) => {
           <Card.Title>{name}</Card.Title>
           <Card.Text className="flex-grow-1">{description}</Card.Text>
 
-          {contractOwner === owner && (
+         
             <>
               <Form.Control
                 className={"pt-2 mb-1"}
@@ -48,14 +48,23 @@ const NftCard = ({ nft, nftTransfer }) => {
                   setnewAddress(e.target.value);
                 }}
               />
-              <Button
+             { isOwner ? (
+             <Button
                 variant="primary"
                 onClick={() => handleTransfer(newaddress)}
               >
                 Transfer
               </Button>
+):(
+  <Button
+  variant="primary"
+>
+  You can't transfer
+</Button>
+)
+}
             </>
-          )}
+          
         </Card.Body>
       </Card>
     </Col>

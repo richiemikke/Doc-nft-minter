@@ -68,6 +68,7 @@ export const getNfts = async (minterContract) => {
                 const res = await minterContract.methods.tokenURI(i).call();
                 const meta = await fetchNftMeta(res);
                 const owner = await fetchNftOwner(minterContract, i);
+                
                 resolve({
                     index: i,
                     owner,

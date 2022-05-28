@@ -122,7 +122,7 @@ const NftList = ({minterContract, name}) => {
                         ..._nft,
 
                       }}
-                      contractOwner={address}
+                      isOwner={_nft.owner === address}
                   />
               ))}
             </Row>
