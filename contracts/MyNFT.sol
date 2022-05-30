@@ -12,7 +12,7 @@ contract MyNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
     Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("MyNFT", "MNFT") {}
+    constructor() ERC721("DocNFT", "DNFT") {}
 
 //    mint an NFT
     function safeMint(address to, string memory uri) public onlyOwner {

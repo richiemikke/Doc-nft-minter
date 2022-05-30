@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Card, Col, Badge, Stack, Row } from "react-bootstrap";
+import { Card, Col, Badge, Stack } from "react-bootstrap";
 import { truncateAddress } from "../../../utils";
 import Identicon from "../../ui/Identicon";
-import { useEffect, useState, useCallback } from "react";
-import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 
 const NftCard = ({ nft, nftTransfer, isOwner}) => {
   const { image, description, owner, name, index } = nft;
-  const [newaddress, setnewAddress] = useState('');
+  const [newAddress, setNewAddress] = useState('');
 
 
   const handleTransfer = (newaddress)=>{
@@ -38,20 +38,20 @@ const NftCard = ({ nft, nftTransfer, isOwner}) => {
           <Card.Title>{name}</Card.Title>
           <Card.Text className="flex-grow-1">{description}</Card.Text>
 
-         
+
             <>
               <Form.Control
                 className={"pt-2 mb-1"}
                 type="text"
                 placeholder="Enter new address"
                 onChange={(e) => {
-                  setnewAddress(e.target.value);
+                  setNewAddress(e.target.value);
                 }}
               />
              { isOwner ? (
              <Button
                 variant="primary"
-                onClick={() => handleTransfer(newaddress)}
+                onClick={() => handleTransfer(newAddress)}
               >
                 Transfer
               </Button>
@@ -64,7 +64,7 @@ const NftCard = ({ nft, nftTransfer, isOwner}) => {
 )
 }
             </>
-          
+
         </Card.Body>
       </Card>
     </Col>
