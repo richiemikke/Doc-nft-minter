@@ -11,7 +11,7 @@ const AddNfts = ({ save, address }) => {
   const [ipfsImage, setIpfsImage] = useState("");
   const [description, setDescription] = useState("");
 
-  
+
   const [show, setShow] = useState(false);
 
 
@@ -22,7 +22,7 @@ const AddNfts = ({ save, address }) => {
   // close the popup modal
   const handleClose = () => {
     setShow(false);
- 
+
   };
 
   // display the popup modal
@@ -89,8 +89,8 @@ const AddNfts = ({ save, address }) => {
                 setIpfsImage(imageUrl);
               }}
               placeholder="Product name"
-            ></Form.Control>
-            
+            />
+
 
           </Form>
         </Modal.Body>
@@ -108,7 +108,7 @@ const AddNfts = ({ save, address }) => {
                 ipfsImage,
                 description,
                 ownerAddress: address,
-            
+
               });
               handleClose();
             }}
