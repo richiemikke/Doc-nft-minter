@@ -57,7 +57,7 @@ const NftCard = ({ nft, nftTransfer, isOwner}) => {
               </Button>
 ):(
   <Button
-  variant="primary"
+  variant="danger"
 >
   You can't transfer
 </Button>
