@@ -46,7 +46,7 @@ contract MyNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   }
 
   // get total number of tokens owned by an address
-  function getTotalNumberOfDocumentsByAnAddress(address _owner) public view returns(uint256) {
+  function getTotalNumberOfDocumentsMintedByAnAddress(address _owner) public view returns(uint256) {
     uint256 totalNumberOfTokensOwned = balanceOf(_owner);
     return totalNumberOfTokensOwned;
   }

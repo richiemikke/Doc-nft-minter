@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import AddNfts from "./Add";
 import Nft from "./Card";
 import Loader from "../../ui/Loader";
+import { Button } from "react-bootstrap";
 import { NotificationSuccess, NotificationError } from "../../ui/Notifications";
 import {
   getNfts,
@@ -23,6 +24,7 @@ const NftList = ({minterContract, name}) => {
   const [nfts, setNfts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [nftOwner, setNftOwner] = useState(null);
+  const [myDocs, setMyDocs] = useState(false);
 
   const getAssets = useCallback(async () => {
     try {
@@ -73,7 +75,7 @@ const NftList = ({minterContract, name}) => {
       getAssets();
     } catch (error) {
       console.log({ error });
-      toast(<NotificationError text="Failed to change price of NFT." />);
+      toast(<NotificationError text="Failed to transfer." />);
     } finally {
       setLoading(false);
     }
@@ -103,18 +105,31 @@ const NftList = ({minterContract, name}) => {
         {!loading ? (
           <>
             <div className="d-flex justify-content-between align-items-center mb-4">
-              <h1 className="fs-4 fw-bold mb-0">{name}</h1>
+            <Button
+                variant="link"
+                onClick={() => {
+                  setMyDocs(false);
+                }}
+              >
+                <h1 className="fs-4 fw-bold mb-0 text-dark">{"All Documents"}</h1>{" "}
+              </Button>
 
-              {/* give the add NFT permission to user who deployed the NFT smart contract */}
-              {/*nftOwner === address ? (*/}
+              <Button variant="link" onClick={() => setMyDocs(true)}>
+                <h1 className="fs-4 fw-bold mb-0 text-dark">
+                  {"My Documents"}
+                </h1>{" "}
+              </Button>
+
+             
                   <AddNfts save={addNft} address={address}/>
-              {/*) : null*/}
+          
 
             </div>
             <Row xs={1} sm={2} lg={3} className="g-3  mb-5 g-xl-4 g-xxl-5">
 
               {/* display all NFTs */}
-              {nfts.map((_nft) => (
+              {!myDocs
+              ? nfts.map((_nft) => (
                   <Nft
                       key={_nft.index}
                       nftTransfer={transfer}
@@ -124,7 +139,19 @@ const NftList = ({minterContract, name}) => {
                       }}
                       isOwner={_nft.owner === address}
                   />
-              ))}
+              ))
+              : nfts.filter((_nft) => _nft.owner === address).map((_nft) => (
+                <Nft
+                key={_nft.index}
+                nftTransfer={transfer}
+                nft={{
+                  ..._nft,
+
+                }}
+                isOwner={_nft.owner === address}
+            />
+              ))
+            }
             </Row>
           </>
         ) : (

@@ -38,7 +38,7 @@ const NftCard = ({ nft, nftTransfer, isOwner}) => {
           <Card.Title>{name}</Card.Title>
           <Card.Text className="flex-grow-1">{description}</Card.Text>
 
-         
+          { isOwner === true && (
             <>
               <Form.Control
                 className={"pt-2 mb-1"}
@@ -48,22 +48,16 @@ const NftCard = ({ nft, nftTransfer, isOwner}) => {
                   setnewAddress(e.target.value);
                 }}
               />
-             { isOwner ? (
+            
              <Button
                 variant="primary"
                 onClick={() => handleTransfer(newaddress)}
               >
                 Transfer
               </Button>
-):(
-  <Button
-  variant="danger"
->
-  You can't transfer
-</Button>
-)
-}
-            </>
+              </>
+)}
+           
           
         </Card.Body>
       </Card>

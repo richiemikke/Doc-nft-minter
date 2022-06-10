@@ -28,22 +28,21 @@ const AddNfts = ({ save, address }) => {
   // display the popup modal
   const handleShow = () => setShow(true);
 
-
   return (
     <>
       <Button
         onClick={handleShow}
-        variant="dark"
-        className="rounded-pill px-0"
-        style={{ width: "38px" }}
+        variant="link"
+        className="rounded-pill px-2 py-2"
       >
-        <i className="bi bi-plus"></i>
+         <h1 className="fs-4 fw-bold mb-0 text-dark">{"Mint a new Document"}</h1> 
+        
       </Button>
 
       {/* Modal */}
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Create NFT</Modal.Title>
+          <Modal.Title>Mint a doc</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
