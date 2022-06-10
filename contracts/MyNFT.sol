@@ -33,6 +33,21 @@ contract MyNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
 
+// getting the list of tokens(documents) owned by a user
+    function DocumentsOfOwner(address _owner)
+    public
+    view
+    returns (uint256[] memory)
+  {
+    uint256 ownerDocCount = balanceOf(_owner);
+    uint256[] memory tokenIds = new uint256[](ownerDocCount);
+    for (uint256 i; i < ownerDocCount; i++) {
+      tokenIds[i] = tokenOfOwnerByIndex(_owner, i);
+    }
+    return tokenIds;
+  }
+
+
      // check if the documents already exists
   function getDocumentExists(uint256 _tokenId) public view returns(bool) {
     bool tokenExists = _exists(_tokenId);
@@ -45,11 +60,7 @@ contract MyNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     return totalNumberOfTokensMinted;
   }
 
-  // get total number of tokens owned by an address
-  function getTotalNumberOfDocumentsMintedByAnAddress(address _owner) public view returns(uint256) {
-    uint256 totalNumberOfTokensOwned = balanceOf(_owner);
-    return totalNumberOfTokensOwned;
-  }
+ 
 
     // The following functions are overrides required by Solidity.
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
