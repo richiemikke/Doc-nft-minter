@@ -1,8 +1,7 @@
 # Doc-nft-minter
 
 # Demo
-
-https://astounding-peony-f52cf9.netlify.app
+https://aquamarine-kheer-1a7dd3.netlify.app
 
 # Description
 
