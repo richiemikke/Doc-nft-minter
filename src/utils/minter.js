@@ -8,7 +8,7 @@ const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
 export const createNft = async (
     minterContract,
     performActions,
-    {name, description, ipfsImage, ownerAddress}
+    {name, description, ipfsImage}
 ) => {
     await performActions(async (kit) => {
         if (!name || !description || !ipfsImage) return;
@@ -32,7 +32,7 @@ export const createNft = async (
 
             // mint the NFT and save the IPFS url to the blockchain
             let transaction = await minterContract.methods
-                .safeMint(ownerAddress, url)
+                .mint(url)
                 .send({from: defaultAccount});
 
             return transaction;
@@ -75,7 +75,6 @@ export const getNfts = async (minterContract) => {
                     name: meta.data.name,
                     image: meta.data.image,
                     description: meta.data.description,
-                    attributes: meta.data.attributes,
                 });
             });
             nfts.push(nft);
