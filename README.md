@@ -1,7 +1,8 @@
 # Doc-nft-minter
 
 # Demo
-https://lighthearted-kitten-8bc5e3.netlify.app
+
+https://astounding-peony-f52cf9.netlify.app
 
 # Description
 
